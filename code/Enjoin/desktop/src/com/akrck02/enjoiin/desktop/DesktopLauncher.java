@@ -1,7 +1,6 @@
 package com.akrck02.enjoiin.desktop;
 
-import com.akrck02.enjoiin.core.Constants;
-import com.akrck02.enjoiin.graphics.Textures;
+import com.akrck02.enjoiin.core.data.Constants;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;

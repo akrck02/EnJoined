@@ -1,8 +1,9 @@
 package com.akrck02.enjoiin.graphics;
 
-import com.akrck02.enjoiin.core.Constants;
+import com.akrck02.enjoiin.core.data.Constants;
 import com.akrck02.enjoiin.core.GameObject;
-import com.akrck02.enjoiin.core.Zones;
+import com.akrck02.enjoiin.core.Vector2D;
+import com.akrck02.enjoiin.core.data.Zones;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -17,8 +18,7 @@ public class Wallpaper extends GameObject {
     public Wallpaper(){
 
         this.batch = new SpriteBatch();
-        this.x = 0;
-        this.y = 0;
+        this.coordinates = new Vector2D(0,0);
         this.width = Constants.SCREEN_WIDTH;
         this.height = Constants.SCREEN_HEIGHT;
 
@@ -44,7 +44,7 @@ public class Wallpaper extends GameObject {
     @Override
     public void render() {
         batch.begin();
-        batch.draw(this.current, (float) this.x, (float) this.y);
+        batch.draw(this.current, (float) this.coordinates.x, (float) this.coordinates.y);
         batch.end();
     }
 

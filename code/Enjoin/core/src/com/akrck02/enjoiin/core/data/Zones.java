@@ -1,4 +1,4 @@
-package com.akrck02.enjoiin.core;
+package com.akrck02.enjoiin.core.data;
 
 public enum Zones {
     TUTORIAL,
