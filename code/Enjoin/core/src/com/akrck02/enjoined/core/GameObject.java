@@ -14,5 +14,19 @@ public abstract class GameObject implements Renderizable, Updateable {
     public abstract void update();
     public abstract void dispose();
 
+    public Vector2D getCoordinates() {
+        return coordinates;
+    }
 
+    public HitBox getBody() {
+        return body;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
 }

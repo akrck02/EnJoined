@@ -70,7 +70,6 @@ public class InputMap {
         return right;
     }
 
-
     //to string
 
     @Override

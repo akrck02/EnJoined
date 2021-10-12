@@ -3,7 +3,7 @@ package com.akrck02.enjoined.graphics.ui;
 import com.akrck02.enjoined.core.GameObject;
 import com.akrck02.enjoined.core.Player;
 import com.akrck02.enjoined.core.Vector2D;
-import com.akrck02.enjoined.core.data.Constants;
+import com.akrck02.enjoined.core.data.AppData;
 import com.akrck02.enjoined.graphics.Textures;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,7 +14,7 @@ public class HeartCounter extends GameObject {
     private Player player;
 
     public HeartCounter(Player player) {
-        this.coordinates = new Vector2D( Constants.GAME_WIDTH - 130, Constants.GAME_HEIGHT - 80);
+        this.coordinates = new Vector2D( AppData.GAME_WIDTH - 130, AppData.GAME_HEIGHT - 80);
         this.player = player;
         batch = new SpriteBatch();
     }

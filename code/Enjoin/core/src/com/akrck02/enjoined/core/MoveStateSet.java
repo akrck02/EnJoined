@@ -1,23 +1,17 @@
 package com.akrck02.enjoined.core;
 
-public class StateSet {
+public class MoveStateSet {
 
     private boolean falling;
     private boolean jumping;
     private boolean accelerating;
     private boolean decelerating;
 
-    private boolean collision;
-    private boolean ethereal;
-
-
-    public StateSet() {
+    public MoveStateSet() {
         this.falling = false;
         this.jumping = false;
         this.accelerating = false;
         this.decelerating = false;
-        this.collision = false;
-        this.ethereal = false;
     }
 
     public boolean isFalling() {
@@ -47,23 +41,6 @@ public class StateSet {
     }
 
     public void setDecelerating(boolean decelerating) {this.decelerating = decelerating;}
-
-    public boolean isCollision() {
-        return collision;
-    }
-
-    public void setCollision(boolean collision) {
-        this.collision = collision;
-    }
-
-    public boolean isEthereal() {
-        return ethereal;
-    }
-
-    public void setEthereal(boolean ethereal) {
-        this.ethereal = ethereal;
-    }
-
     public boolean isGrounded(){
         return !isJumping() && !isFalling();
     }
@@ -76,8 +53,6 @@ public class StateSet {
                 ", accelerating =" + accelerating +
                 ", decelerating =" + decelerating +
                 ", grounded=" + isGrounded() +
-                ", collision=" + collision +
-                ", ethereal=" + ethereal +
                 '}';
     }
 }

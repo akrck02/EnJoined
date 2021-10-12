@@ -15,28 +15,37 @@ public class Player extends GameObject {
     private SpriteBatch batch;
     private Sprite sprite;
     private PlayerController controller;
-    private StateSet states;
+    private MoveStateSet states;
 
     //stats
     private int lifes;
     private Savestate savestate;
 
-    public Player(Savestate savestate,double x, double y, double width, double height) {
+    public Player(Savestate savestate,double x, double y, double width, double height,boolean playerOne) {
         this.coordinates = new Vector2D(x, y);
         this.width = width;
-        this.lifes = 1;
+        this.lifes = 3;
         this.height = height;
         this.body = new HitBox(this, width, height);
         this.controller = new PlayerController(this, new InputMap());
-        this.states = new StateSet();
+        this.states = new MoveStateSet();
         this.savestate = savestate;
 
+
         HashMap<Direction, Texture> sprites = new HashMap<>();
-        sprites.put(Direction.IDLE, Textures.PLAYER_IDLE);
-        sprites.put(Direction.NORTH, Textures.PLAYER_NORTH);
-        sprites.put(Direction.SOUTH, Textures.PLAYER_SOUTH);
-        sprites.put(Direction.EAST, Textures.PLAYER_EAST);
-        sprites.put(Direction.WEST, Textures.PLAYER_WEST);
+        if(playerOne){
+            sprites.put(Direction.IDLE, Textures.PLAYER_IDLE);
+            sprites.put(Direction.NORTH, Textures.PLAYER_NORTH);
+            sprites.put(Direction.SOUTH, Textures.PLAYER_SOUTH);
+            sprites.put(Direction.EAST, Textures.PLAYER_EAST);
+            sprites.put(Direction.WEST, Textures.PLAYER_WEST);
+        } else {
+            sprites.put(Direction.IDLE, Textures.PLAYER_2_IDLE);
+            sprites.put(Direction.NORTH, Textures.PLAYER_2_NORTH);
+            sprites.put(Direction.SOUTH, Textures.PLAYER_2_SOUTH);
+            sprites.put(Direction.EAST, Textures.PLAYER_2_EAST);
+            sprites.put(Direction.WEST, Textures.PLAYER_2_WEST);
+        }
 
         batch = new SpriteBatch();
         this.sprite = new Sprite(sprites);
@@ -72,7 +81,7 @@ public class Player extends GameObject {
         return controller;
     }
 
-    public StateSet getStates() {
+    public MoveStateSet getStates() {
         return states;
     }
 

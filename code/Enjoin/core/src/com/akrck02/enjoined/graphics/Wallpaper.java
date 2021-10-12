@@ -1,6 +1,6 @@
 package com.akrck02.enjoined.graphics;
 
-import com.akrck02.enjoined.core.data.Constants;
+import com.akrck02.enjoined.core.data.AppData;
 import com.akrck02.enjoined.core.GameObject;
 import com.akrck02.enjoined.core.Vector2D;
 import com.akrck02.enjoined.core.data.Zones;
@@ -19,8 +19,8 @@ public class Wallpaper extends GameObject {
 
         this.batch = new SpriteBatch();
         this.coordinates = new Vector2D(0,0);
-        this.width = Constants.SCREEN_WIDTH;
-        this.height = Constants.SCREEN_HEIGHT;
+        this.width = AppData.SCREEN_WIDTH;
+        this.height = AppData.SCREEN_HEIGHT;
 
         this.wallpapers = new HashMap<>();
         this.wallpapers.put(Zones.TUTORIAL,Textures.TUTORIAL_BACKGROUND);

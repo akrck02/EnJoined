@@ -3,7 +3,7 @@ package com.akrck02.enjoined.graphics.ui;
 import com.akrck02.enjoined.core.GameObject;
 import com.akrck02.enjoined.core.Player;
 import com.akrck02.enjoined.core.Vector2D;
-import com.akrck02.enjoined.core.data.Constants;
+import com.akrck02.enjoined.core.data.AppData;
 import com.akrck02.enjoined.graphics.Textures;
 import com.akrck02.enjoined.graphics.font.Text;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,7 +18,7 @@ public class LevelCounter extends GameObject {
     public LevelCounter(Player player) {
         this.player = player;
         this.batch = new SpriteBatch();
-        this.coordinates = new Vector2D(30,Constants.GAME_HEIGHT - 60);
+        this.coordinates = new Vector2D(30, AppData.GAME_HEIGHT - 60);
         this.levelText = Textures.LEVEL_WORD;
     }
 

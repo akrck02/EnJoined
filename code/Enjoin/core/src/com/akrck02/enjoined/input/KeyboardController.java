@@ -1,6 +1,8 @@
 package com.akrck02.enjoined.input;
 
 import com.akrck02.enjoined.core.Player;
+import com.akrck02.enjoined.core.data.AppData;
+import com.akrck02.enjoined.core.data.Enviroment;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
@@ -33,6 +35,14 @@ public class KeyboardController implements InputProcessor {
 
         if(keycode == Input.Keys.DPAD_LEFT)
             this.player.getInputs().setLeft(true);
+
+        if(keycode == Input.Keys.F3){
+            if(AppData.ENVIROMENT == Enviroment.PRODUCTION)
+                AppData.ENVIROMENT = Enviroment.DEBUG;
+            else
+                AppData.ENVIROMENT = Enviroment.PRODUCTION;
+        }
+
 
         return false;
     }
@@ -88,5 +98,10 @@ public class KeyboardController implements InputProcessor {
     @Override
     public boolean scrolled(float amountX, float amountY) {
         return false;
+    }
+
+    public KeyboardController setPlayer(Player player) {
+        this.player = player;
+        return this;
     }
 }

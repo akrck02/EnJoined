@@ -1,5 +1,6 @@
 package com.akrck02.enjoined.input;
 
+import com.akrck02.enjoined.Enjoin;
 import com.akrck02.enjoined.core.Player;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;
@@ -45,6 +46,11 @@ public class GamepadController implements ControllerListener {
         if(buttonCode == mapping.buttonDpadLeft)
             this.player.getInputs().setLeft(true);
 
+        if(buttonCode == mapping.buttonL1){
+            Enjoin.swapPlayer = true;
+            System.out.println("Swap");
+        }
+
         return false;
     }
 
@@ -76,5 +82,10 @@ public class GamepadController implements ControllerListener {
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
         return false;
+    }
+
+    public GamepadController setPlayer(Player player) {
+        this.player = player;
+        return this;
     }
 }
