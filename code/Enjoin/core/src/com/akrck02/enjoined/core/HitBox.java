@@ -63,7 +63,7 @@ public class HitBox implements Renderizable, Updateable {
      * @param other - The other hitbox
      * @return boolean
      */
-    public boolean isCollidingNorth(HitBox other) {
+    public boolean isCollidingUp(HitBox other) {
         Rectangle minirec = new Rectangle();
         minirec.height = 1;
         minirec.width = rectangle.width;
@@ -79,7 +79,7 @@ public class HitBox implements Renderizable, Updateable {
      * @param other - The other hitbox
      * @return boolean
      */
-    public boolean isCollidingSouth(HitBox other) {
+    public boolean isCollidingDown(HitBox other) {
         Rectangle minirec = new Rectangle();
         minirec.height = 1;
         minirec.width = rectangle.width;

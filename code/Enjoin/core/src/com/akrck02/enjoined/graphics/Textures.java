@@ -83,5 +83,12 @@ public class Textures {
     public final static Texture CHAR_Y = new Texture(FONT_DIR + "Y.png");
     public final static Texture CHAR_Z = new Texture(FONT_DIR + "Z.png");
 
+    public final static Texture CHAR_COLON = new Texture(FONT_DIR + "colon.png");
+    public final static Texture CHAR_SEMICOLON = new Texture(FONT_DIR + "semicolon.png");
+    public final static Texture CHAR_COMMA = new Texture(FONT_DIR + "comma.png");
+    public final static Texture CHAR_DOT = new Texture(FONT_DIR + "dot.png");
+    public final static Texture CHAR_INTERROGATION = new Texture(FONT_DIR + "interrogation.png");
+    public final static Texture CHAR_EXCLAMATION = new Texture(FONT_DIR + "exclamation.png");
+
 
 }

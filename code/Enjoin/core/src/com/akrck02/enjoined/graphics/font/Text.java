@@ -28,12 +28,20 @@ public class Text {
         font.put("8", Textures.CHAR_8);
         font.put("9", Textures.CHAR_9);
 
+        font.put(",", Textures.CHAR_COMMA);
+        font.put(".", Textures.CHAR_DOT);
+        font.put(":", Textures.CHAR_COLON);
+        font.put(";", Textures.CHAR_SEMICOLON);
+        font.put("?", Textures.CHAR_INTERROGATION);
+        font.put("!", Textures.CHAR_EXCLAMATION);
+
         font.put("A", Textures.CHAR_A);
         font.put("B", Textures.CHAR_B);
         font.put("C", Textures.CHAR_C);
         font.put("D", Textures.CHAR_D);
         font.put("E", Textures.CHAR_E);
         font.put("F", Textures.CHAR_F);
+        font.put("G", Textures.CHAR_G);
         font.put("H", Textures.CHAR_H);
         font.put("I", Textures.CHAR_I);
         font.put("J", Textures.CHAR_J);

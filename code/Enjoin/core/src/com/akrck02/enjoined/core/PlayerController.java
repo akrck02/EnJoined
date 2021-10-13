@@ -41,26 +41,30 @@ public class PlayerController implements Updateable {
          */
         if (inputs.isJump()) {
 
-            speed += ACCELERATION;
-            if (speed >= MAX_JUMP_SPEED) {
-                speed = MAX_JUMP_SPEED;
-                player.getStates().setJumping(false);
-                player.getStates().setFalling(true);
-            }
+            if(!this.player.getMoveStates().isCollideUp()) {
 
-            jump();
+                speed += ACCELERATION;
+                if (speed >= MAX_JUMP_SPEED) {
+                    speed = MAX_JUMP_SPEED;
+                    player.getMoveStates().setJumping(false);
+                    player.getMoveStates().setFalling(true);
+                }
 
+                jump();
+            } else this.player.getMoveStates().setCollideUp(false);
         } else {
+            if(!this.player.getMoveStates().isCollideDown()){
+                this.speed = Physics.GRAVITY;
+                double newY = player.coordinates.y - speed;
 
-            this.speed = Physics.GRAVITY;
-            double newY = player.coordinates.y - speed;
+                if (newY < 0) {
+                    newY = 0;
+                    this.speed = 0;
+                }
 
-            if (newY < 0) {
-                newY = 0;
-                this.speed = 0;
+                player.coordinates.y = newY;
             }
-
-            player.coordinates.y = newY;
+            this.player.getMoveStates().setCollideDown(false);
         }
 
         /*
@@ -81,29 +85,31 @@ public class PlayerController implements Updateable {
          * Right movement handle
          */
         if (inputs.isRight()) {
-
-            if (player.getStates().isAccelerating()) {
-                this.speed += ACCELERATION;
-                if (this.speed > MAX_SPEED) {
-                    this.speed = MAX_SPEED;
-                    player.getStates().setAccelerating(false);
-                    player.getStates().setDecelerating(true);
+            if(!player.getMoveStates().isCollideRight()) {
+                if (player.getMoveStates().isAccelerating()) {
+                    this.speed += ACCELERATION;
+                    if (this.speed > MAX_SPEED) {
+                        this.speed = MAX_SPEED;
+                        player.getMoveStates().setAccelerating(false);
+                        player.getMoveStates().setDecelerating(true);
+                    }
                 }
-            }
 
-            moveRight();
+                moveRight();
+            }
+            player.getMoveStates().setCollideRight(false);
         }
 
         /*
          * Left movement handle
          */
         if (inputs.isLeft()) {
-            if (player.getStates().isAccelerating()) {
+            if (player.getMoveStates().isAccelerating()) {
                 this.speed += ACCELERATION;
                 if (this.speed > MAX_SPEED) {
                     this.speed = MAX_SPEED;
-                    player.getStates().setAccelerating(false);
-                    player.getStates().setDecelerating(true);
+                    player.getMoveStates().setAccelerating(false);
+                    player.getMoveStates().setDecelerating(true);
                 }
             }
 
@@ -117,7 +123,7 @@ public class PlayerController implements Updateable {
      * Move the character up
      */
     private void moveUp() {
-        player.getStates().setAccelerating(true);
+        player.getMoveStates().setAccelerating(true);
         player.getSprite().setCurrent(Direction.NORTH);
     }
 
@@ -125,7 +131,7 @@ public class PlayerController implements Updateable {
      * Move the character down
      */
     private void moveDown() {
-        player.getStates().setAccelerating(true);
+        player.getMoveStates().setAccelerating(true);
         player.getSprite().setCurrent(Direction.SOUTH);
     }
 
@@ -133,7 +139,7 @@ public class PlayerController implements Updateable {
      * Move the character to the  left
      */
     private void moveLeft() {
-        player.getStates().setAccelerating(true);
+        player.getMoveStates().setAccelerating(true);
         player.getSprite().setCurrent(Direction.WEST);
 
         final double acceleration = 200;
@@ -149,7 +155,7 @@ public class PlayerController implements Updateable {
      * Move the character to the right
      */
     private void moveRight() {
-        player.getStates().setAccelerating(true);
+        player.getMoveStates().setAccelerating(true);
         player.getSprite().setCurrent(Direction.EAST);
         ;
         final double deltaTime = Gdx.graphics.getDeltaTime();
@@ -176,6 +182,16 @@ public class PlayerController implements Updateable {
     }
 
 
+    public void resetInputs() {
+        InputMap inputs = this.player.getInputs();
+        inputs.setUp(false);
+        inputs.setDown(false);
+        inputs.setRight(false);
+        inputs.setLeft(false);
+        inputs.setAction(false);
+        inputs.setJump(false);
+    }
+
     //Getters and setters
 
     public void action() {
@@ -186,4 +202,7 @@ public class PlayerController implements Updateable {
         return inputs;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
 }

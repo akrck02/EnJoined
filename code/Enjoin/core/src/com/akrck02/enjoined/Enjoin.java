@@ -64,9 +64,14 @@ public class Enjoin extends ApplicationAdapter {
 		ScreenUtils.clear(255, 255, 255, 1);
 
 		if(swapPlayer){
+			player.getController().resetInputs();
+
 			swapPlayers();
 			gamepad.setPlayer(player);
 			keyboard.setPlayer(player);
+			player.getController().resetInputs();
+
+			swapPlayer = false;
 		}
 
 
@@ -78,7 +83,10 @@ public class Enjoin extends ApplicationAdapter {
 		if(AppData.ENVIROMENT == Enviroment.DEBUG){
 			int fps = Gdx.graphics.getFramesPerSecond();
 			Text.drawText("FPS " + fps, 0,600);
-			Text.drawText("Players " + Controllers.getControllers().size , 0,550);
+			Text.drawText("Gamepads " + Controllers.getControllers().size , 0,550);
+			Text.drawText("Speed " + this.player.getController().getSpeed() , 0,500);
+			Text.drawText("x " + String.format("%,.2f", this.player.getCoordinates().x) , 0,450);
+			Text.drawText("y " + String.format("%,.2f", this.player.getCoordinates().y) , 0,400);
 		}
 	}
 

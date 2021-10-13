@@ -25,9 +25,13 @@ public class CookieCounter extends GameObject {
         batch.begin();
 
         String cookies = player.getSavestate().getCookies() + "";
+        StringBuffer sbr = new StringBuffer(cookies);
+        sbr.reverse();
+        cookies = sbr.toString();
+
         for (int i = 0; i < cookies.length(); i++) {
             Texture levelNum = Text.font.get(cookies.charAt(i) + "");
-            batch.draw(levelNum,(float) this.coordinates.x - 55 + (25 * (i + 1)),(float) this.coordinates.y);
+            batch.draw(levelNum,(float) this.coordinates.x - (30 * (i + 1)),(float) this.coordinates.y);
         }
 
         batch.draw(Textures.COOKIE,(float) this.coordinates.x, (float) this.coordinates.y - 2);

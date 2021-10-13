@@ -1,6 +1,5 @@
 package com.akrck02.enjoined.core.levels;
 
-import com.akrck02.enjoined.Enjoin;
 import com.akrck02.enjoined.core.GameObject;
 import com.akrck02.enjoined.core.Player;
 import com.akrck02.enjoined.core.Tile;
@@ -11,6 +10,7 @@ import com.akrck02.enjoined.core.interfaces.Updateable;
 import com.akrck02.enjoined.core.savestates.Savestate;
 import com.akrck02.enjoined.graphics.Wallpaper;
 import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
@@ -90,8 +90,6 @@ public class Level implements Updateable, Renderizable {
         double x = Double.parseDouble(vectorArray[0]);
         double y = Double.parseDouble(vectorArray[1]);
         this.door = new Vector2D(x,y);
-
-        player2 = new Player(new Savestate(),x,y,64,64,false);
 
         content = content.substring(lineEnd + 1);
         return content;
@@ -181,10 +179,13 @@ public class Level implements Updateable, Renderizable {
 
     @Override
     public void update() {
+
+
+        //checkCollision
         for (Tile tile : tiles){
             tile.update();
-            boolean collide = player.getBody().isCollidingNorth(tile.getBody());
-            if(collide) System.out.println("Collide!");
+            checkCollisions(player,tile);
+            checkCollisions(player2,tile);
         }
 
 
@@ -201,6 +202,31 @@ public class Level implements Updateable, Renderizable {
         player2.update();
         wallpaper.update();
     }
+
+    public void checkCollisions(Player player , GameObject object){
+        boolean colliding = player.getBody().isColliding(object.getBody());
+        if(colliding){
+            boolean collideUp = player.getBody().isCollidingUp(object.getBody());
+            boolean collideDown = player.getBody().isCollidingDown(object.getBody());
+            boolean collideLeft = player.getBody().isCollidingLeft(object.getBody());
+            boolean collideRight = player.getBody().isCollidingRight(object.getBody());
+
+            if(collideUp)
+                player.getMoveStates().setCollideUp(true);
+
+            if(collideDown)
+                player.getMoveStates().setCollideDown(true);
+
+            if(collideLeft)
+                player.getMoveStates().setCollideLeft(true);
+
+            if(collideRight)
+                player.getMoveStates().setCollideRight(true);
+
+        }
+
+    }
+
 
     @Override
     public void dispose() {
@@ -223,8 +249,8 @@ public class Level implements Updateable, Renderizable {
 
     // Set player
     public Level setPlayers(Player player, Player player2) {
-        this.player = player;
-        this.player2 = player2;
+            this.player = player;
+            this.player2 = player2;
         return this;
     }
 
