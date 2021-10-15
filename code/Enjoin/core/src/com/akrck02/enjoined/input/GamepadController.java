@@ -8,9 +8,9 @@ import com.badlogic.gdx.controllers.ControllerMapping;
 
 public class GamepadController implements ControllerListener {
 
-    private Player player;
-    public GamepadController(Player player){
-        this.player = player;
+    private InputMap inputs;
+    public GamepadController(InputMap inputs){
+        this.inputs = inputs;
     }
 
     @Override
@@ -29,26 +29,28 @@ public class GamepadController implements ControllerListener {
         ControllerMapping mapping = controller.getMapping();
 
         if(buttonCode == mapping.buttonA)
-                this.player.getInputs().setAction(true);
+            this.inputs.setAction(true);
 
         if(buttonCode == mapping.buttonX || buttonCode == mapping.buttonR1)
-            this.player.getInputs().setJump(true);
+            this.inputs.setJump(true);
 
         if(buttonCode == mapping.buttonDpadUp)
-            this.player.getInputs().setUp(true);
+            this.inputs.setUp(true);
 
         if(buttonCode == mapping.buttonDpadDown)
-            this.player.getInputs().setDown(true);
+            this.inputs.setDown(true);
 
         if(buttonCode == mapping.buttonDpadRight)
-            this.player.getInputs().setRight(true);
+            this.inputs.setRight(true);
 
         if(buttonCode == mapping.buttonDpadLeft)
-            this.player.getInputs().setLeft(true);
+            this.inputs.setLeft(true);
 
         if(buttonCode == mapping.buttonL1){
+            if(controller.canVibrate())
+                controller.startVibration(250,1);
+
             Enjoin.swapPlayer = true;
-            System.out.println("Swap");
         }
 
         return false;
@@ -59,33 +61,61 @@ public class GamepadController implements ControllerListener {
         ControllerMapping mapping = controller.getMapping();
 
         if(buttonCode == mapping.buttonA)
-            this.player.getInputs().setAction(false);
+            this.inputs.setAction(false);
 
         if(buttonCode == mapping.buttonX || buttonCode == mapping.buttonR1)
-            this.player.getInputs().setJump(false);
+            this.inputs.setJump(false);
 
         if(buttonCode == mapping.buttonDpadUp)
-            this.player.getInputs().setUp(false);
+            this.inputs.setUp(false);
 
         if(buttonCode == mapping.buttonDpadDown)
-            this.player.getInputs().setDown(false);
+            this.inputs.setDown(false);
 
         if(buttonCode == mapping.buttonDpadRight)
-            this.player.getInputs().setRight(false);
+            this.inputs.setRight(false);
 
         if(buttonCode == mapping.buttonDpadLeft)
-            this.player.getInputs().setLeft(false);
+            this.inputs.setLeft(false);
 
         return false;
     }
 
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
+        ControllerMapping mapping = controller.getMapping();
+        if(axisCode == mapping.axisLeftX){
+            if(value > 0.5) {
+                inputs.setRight(true);
+                inputs.setLeft(false);
+            } else
+                if(value < -0.5) {
+                    inputs.setLeft(true);
+                    inputs.setRight(false);
+                } else {
+                    inputs.setRight(false);
+                    inputs.setLeft(false);
+                }
+        }
+        if(axisCode == mapping.axisLeftY){
+            if(value > 0.5) {
+                inputs.setUp(false);
+                inputs.setDown(true);
+            } else
+            if(value < -0.5) {
+                inputs.setDown(false);
+                inputs.setUp(true);
+            } else {
+                inputs.setUp(false);
+                inputs.setDown(false);
+            }
+        }
+
         return false;
     }
 
-    public GamepadController setPlayer(Player player) {
-        this.player = player;
+    public GamepadController setInputs(InputMap inputs) {
+        this.inputs = inputs;
         return this;
     }
 }

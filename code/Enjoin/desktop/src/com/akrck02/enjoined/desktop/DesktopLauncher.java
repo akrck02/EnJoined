@@ -1,5 +1,6 @@
 package com.akrck02.enjoined.desktop;
 
+import com.akrck02.enjoined.StartScreen;
 import com.akrck02.enjoined.core.data.AppData;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
@@ -14,6 +15,6 @@ public class DesktopLauncher {
 		config.width = AppData.GAME_WIDTH;
 		config.height = AppData.SCREEN_HEIGHT;
 
-		LwjglApplication app = new LwjglApplication(new Enjoin(), config);
+		LwjglApplication app = new LwjglApplication(new StartScreen(), config);
 	}
 }

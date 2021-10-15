@@ -16,6 +16,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -35,6 +37,7 @@ public class Enjoin extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+
 		Gdx.graphics.setResizable(false);
 
 		savestate = SaveIo.getSavestate();
@@ -45,8 +48,8 @@ public class Enjoin extends ApplicationAdapter {
 		level = loadLevel();
 		level.setPlayers(this.player,this.player2);
 
-		keyboard = new KeyboardController(this.player);
-		gamepad = new GamepadController(this.player);
+		keyboard = new KeyboardController(this.player.getInputs());
+		gamepad = new GamepadController(this.player.getInputs());
 
 		Controllers.addListener(this.gamepad);
 		Gdx.input.setInputProcessor(this.keyboard);
@@ -67,8 +70,8 @@ public class Enjoin extends ApplicationAdapter {
 			player.getController().resetInputs();
 
 			swapPlayers();
-			gamepad.setPlayer(player);
-			keyboard.setPlayer(player);
+			gamepad.setInputs(player.getInputs());
+			keyboard.setInputs(player.getInputs());
 			player.getController().resetInputs();
 
 			swapPlayer = false;

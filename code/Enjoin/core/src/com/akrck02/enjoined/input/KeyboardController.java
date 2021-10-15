@@ -8,10 +8,10 @@ import com.badlogic.gdx.InputProcessor;
 
 public class KeyboardController implements InputProcessor {
 
-    private Player player;
+    private InputMap inputs;
 
-    public KeyboardController(Player player) {
-        this.player = player;
+    public KeyboardController(InputMap inputs) {
+        this.inputs = inputs;
     }
 
 
@@ -19,22 +19,22 @@ public class KeyboardController implements InputProcessor {
     public boolean keyDown(int keycode) {
 
         if(keycode == Input.Keys.X)
-            this.player.getInputs().setAction(true);
+            this.inputs.setAction(true);
 
         if(keycode == Input.Keys.SPACE)
-            this.player.getInputs().setJump(true);
+            this.inputs.setJump(true);
 
         if(keycode == Input.Keys.DPAD_UP)
-            this.player.getInputs().setUp(true);
+            this.inputs.setUp(true);
 
         if(keycode == Input.Keys.DPAD_DOWN)
-            this.player.getInputs().setDown(true);
+            this.inputs.setDown(true);
 
         if(keycode == Input.Keys.DPAD_RIGHT)
-            this.player.getInputs().setRight(true);
+            this.inputs.setRight(true);
 
         if(keycode == Input.Keys.DPAD_LEFT)
-            this.player.getInputs().setLeft(true);
+            this.inputs.setLeft(true);
 
         if(keycode == Input.Keys.F3){
             if(AppData.ENVIROMENT == Enviroment.PRODUCTION)
@@ -50,22 +50,22 @@ public class KeyboardController implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         if(keycode == Input.Keys.X)
-            this.player.getInputs().setAction(false);
+            this.inputs.setAction(false);
 
         if(keycode == Input.Keys.SPACE)
-            this.player.getInputs().setJump(false);
+            this.inputs.setJump(false);
 
         if(keycode == Input.Keys.DPAD_UP)
-            this.player.getInputs().setUp(false);
+            this.inputs.setUp(false);
 
         if(keycode == Input.Keys.DPAD_DOWN)
-            this.player.getInputs().setDown(false);
+            this.inputs.setDown(false);
 
         if(keycode == Input.Keys.DPAD_RIGHT)
-            this.player.getInputs().setRight(false);
+            this.inputs.setRight(false);
 
         if(keycode == Input.Keys.DPAD_LEFT)
-            this.player.getInputs().setLeft(false);
+            this.inputs.setLeft(false);
 
         return false;
     }
@@ -100,8 +100,8 @@ public class KeyboardController implements InputProcessor {
         return false;
     }
 
-    public KeyboardController setPlayer(Player player) {
-        this.player = player;
+    public KeyboardController setInputs(InputMap inputs) {
+        this.inputs = inputs;
         return this;
     }
 }

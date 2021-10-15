@@ -6,6 +6,8 @@ public class Textures {
 
     public final static String CHARACTER_DIR = "characters/";
     public final static String BACKGROUNDS_DIR = "backgrounds/";
+    public final static String DECORATIONS_DIR = "decorations/";
+    public final static String MENU_DIR = "menu/";
     public final static String FONT_DIR = "font/";
     public final static String ITEMS_DIR = "items/";
     public final static String TILES_DIR = "tiles/";
@@ -29,11 +31,15 @@ public class Textures {
     //backgrounds
     public final static Texture NO_BACKGROUND = new Texture(BACKGROUNDS_DIR + "noBackground.png");
     public final static Texture TUTORIAL_BACKGROUND = new Texture(BACKGROUNDS_DIR + "noBackground.png");
-    public final static Texture CITY_BACKGROUND = new Texture(BACKGROUNDS_DIR + "CityBackground.png");
+    public final static Texture CITY_BACKGROUND = new Texture(BACKGROUNDS_DIR + "cityBackground.png");
+    public final static Texture MENU_BACKGROUND = new Texture(BACKGROUNDS_DIR + "menuBackground.png");
     public final static Texture SPACE_BACKGROUND = NO_BACKGROUND;
     public final static Texture HELL_BACKGROUND = NO_BACKGROUND;
     public final static Texture NORTH_POLE_BACKGROUND = NO_BACKGROUND;
     public final static Texture CHRISTMAS_BACKGROUND = NO_BACKGROUND;
+
+    //background decorations
+    public final static Texture CLOUDS = new Texture(DECORATIONS_DIR + "clouds.png");
 
     //items
     public final static Texture COOKIE = new Texture(ITEMS_DIR + "Cookie.png");
@@ -42,9 +48,25 @@ public class Textures {
 
     //tiles
     public final static Texture CITY_BLOCK = new Texture(TILES_DIR + "CityBlockShort.png");
+    public final static Texture CHRISTMAS_BLOCK = new Texture(TILES_DIR + "ChristmasBlockShort.png");
+    public final static Texture CHRISTMAS_2_BLOCK = new Texture(TILES_DIR + "Christmas2BlockShort.png");
+    public final static Texture FOREST_BLOCK = new Texture(TILES_DIR + "ForestBlockShort.png");
+    public final static Texture GRASS_BLOCK = new Texture(TILES_DIR + "GrassBlockShort.png");
+    public final static Texture HELL_BLOCK = new Texture(TILES_DIR + "HellBlockShort.png");
+    public final static Texture SPACE_BLOCK = new Texture(TILES_DIR + "MarsBlockShort.png");
+    public final static Texture NORTH_POLE_BLOCK = new Texture(TILES_DIR + "NorthPoleBlockShort.png");
+
+    //menu resources
+    public final static Texture MENU_TITLE = new Texture(MENU_DIR + "title.png");
+    public final static Texture MENU_LINE = new Texture(MENU_DIR + "line.png");
+    public final static Texture MENU_CONTINUE = new Texture(MENU_DIR + "continue.png");
+    public final static Texture MENU_CONTINUE_SELECTED = new Texture(MENU_DIR + "continueselected.png");
+    public final static Texture MENU_NEW_GAME = new Texture(MENU_DIR + "newgame.png");
+    public final static Texture MENU_NEW_GAME_SELECTED = new Texture(MENU_DIR + "newgameselected.png");
 
     //text resources
     public final static Texture LEVEL_WORD = new Texture(FONT_DIR + "Level.png");
+
     public final static Texture CHAR_0 = new Texture(FONT_DIR + "0.png");
     public final static Texture CHAR_1 = new Texture(FONT_DIR + "1.png");
     public final static Texture CHAR_2 = new Texture(FONT_DIR + "2.png");
@@ -89,6 +111,5 @@ public class Textures {
     public final static Texture CHAR_DOT = new Texture(FONT_DIR + "dot.png");
     public final static Texture CHAR_INTERROGATION = new Texture(FONT_DIR + "interrogation.png");
     public final static Texture CHAR_EXCLAMATION = new Texture(FONT_DIR + "exclamation.png");
-
 
 }
