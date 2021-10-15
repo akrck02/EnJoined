@@ -1,9 +1,10 @@
 package com.akrck02.enjoined.core;
 
-public class MoveStateSet {
+public class PhysicsStateSet {
 
-    private boolean falling;
-    private boolean jumping;
+    private boolean ascending;
+    private boolean descending;
+
     private boolean accelerating;
     private boolean decelerating;
 
@@ -12,9 +13,13 @@ public class MoveStateSet {
     private boolean collideLeft;
     private boolean collideRight;
 
-    public MoveStateSet() {
-        this.falling = false;
-        this.jumping = false;
+    public PhysicsStateSet() {
+        reset();
+    }
+
+    public void reset(){
+        this.descending = false;
+        this.ascending = false;
         this.accelerating = false;
         this.decelerating = false;
 
@@ -24,20 +29,20 @@ public class MoveStateSet {
         this.collideRight = false;
     }
 
-    public boolean isFalling() {
-        return falling;
+    public boolean isDescending() {
+        return descending;
     }
 
-    public void setFalling(boolean falling) {
-        this.falling = falling;
+    public void setDescending(boolean descending) {
+        this.descending = descending;
     }
 
-    public boolean isJumping() {
-        return jumping;
+    public boolean isAscending() {
+        return ascending;
     }
 
-    public void setJumping(boolean jumping) {
-        this.jumping = jumping;
+    public void setAscending(boolean ascending) {
+        this.ascending = ascending;
     }
 
     public boolean isAccelerating() {
@@ -60,7 +65,7 @@ public class MoveStateSet {
         return collideUp;
     }
 
-    public MoveStateSet setCollideUp(boolean collideUp) {
+    public PhysicsStateSet setCollideUp(boolean collideUp) {
         this.collideUp = collideUp;
         return this;
     }
@@ -69,7 +74,7 @@ public class MoveStateSet {
         return collideDown;
     }
 
-    public MoveStateSet setCollideDown(boolean collideDown) {
+    public PhysicsStateSet setCollideDown(boolean collideDown) {
         this.collideDown = collideDown;
         return this;
     }
@@ -78,7 +83,7 @@ public class MoveStateSet {
         return collideLeft;
     }
 
-    public MoveStateSet setCollideLeft(boolean collideLeft) {
+    public PhysicsStateSet setCollideLeft(boolean collideLeft) {
         this.collideLeft = collideLeft;
         return this;
     }
@@ -87,7 +92,7 @@ public class MoveStateSet {
         return collideRight;
     }
 
-    public MoveStateSet setCollideRight(boolean collideRight) {
+    public PhysicsStateSet setCollideRight(boolean collideRight) {
         this.collideRight = collideRight;
         return this;
     }

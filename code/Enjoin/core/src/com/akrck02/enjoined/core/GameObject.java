@@ -9,6 +9,7 @@ public abstract class GameObject implements Renderizable, Updateable {
     protected HitBox body;
     protected double height;
     protected double width;
+    protected PhysicsStateSet physicsStateSet;
 
     public abstract void render();
     public abstract void update();

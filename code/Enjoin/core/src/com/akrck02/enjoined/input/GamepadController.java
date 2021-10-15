@@ -28,10 +28,10 @@ public class GamepadController implements ControllerListener {
 
         ControllerMapping mapping = controller.getMapping();
 
-        if(buttonCode == mapping.buttonA)
+        if(buttonCode == mapping.buttonX)
             this.inputs.setAction(true);
 
-        if(buttonCode == mapping.buttonX || buttonCode == mapping.buttonR1)
+        if(buttonCode == mapping.buttonA || buttonCode == mapping.buttonR1)
             this.inputs.setJump(true);
 
         if(buttonCode == mapping.buttonDpadUp)
@@ -51,6 +51,13 @@ public class GamepadController implements ControllerListener {
                 controller.startVibration(250,1);
 
             Enjoin.swapPlayer = true;
+        }
+
+        if(buttonCode == mapping.buttonStart){
+            if(controller.canVibrate())
+                controller.startVibration(250,0);
+
+            Enjoin.recharge = true;
         }
 
         return false;

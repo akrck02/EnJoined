@@ -15,7 +15,7 @@ public class Player extends GameObject {
     private SpriteBatch batch;
     private Sprite sprite;
     private PlayerController controller;
-    private MoveStateSet movestates;
+    private PhysicsStateSet physicsStateSet;
 
     //stats
     private int lifes;
@@ -28,7 +28,7 @@ public class Player extends GameObject {
         this.height = height;
         this.body = new HitBox(this, width, height);
         this.controller = new PlayerController(this, new InputMap());
-        this.movestates = new MoveStateSet();
+        this.physicsStateSet = new PhysicsStateSet();
         this.savestate = savestate;
         this.savestate.setCookies(323948232);
 
@@ -82,8 +82,8 @@ public class Player extends GameObject {
         return controller;
     }
 
-    public MoveStateSet getMoveStates() {
-        return movestates;
+    public PhysicsStateSet getPhysicStates() {
+        return physicsStateSet;
     }
 
     public InputMap getInputs() {
@@ -102,7 +102,7 @@ public class Player extends GameObject {
     @Override
     public String toString() {
         return "Player{" +
-                "states=" + movestates +
+                "states=" + physicsStateSet +
                 '}';
     }
 }

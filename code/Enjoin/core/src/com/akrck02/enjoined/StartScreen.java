@@ -1,6 +1,8 @@
 package com.akrck02.enjoined;
 
 import com.akrck02.enjoined.core.GameObject;
+import com.akrck02.enjoined.core.data.AppData;
+import com.akrck02.enjoined.core.data.Enviroment;
 import com.akrck02.enjoined.graphics.Button;
 import com.akrck02.enjoined.graphics.Textures;
 import com.akrck02.enjoined.graphics.decoration.Character;
@@ -16,6 +18,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import jdk.vm.ci.meta.Constant;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -117,9 +120,6 @@ public class StartScreen extends ApplicationAdapter {
             player2.render();
             player2.update();
 
-            int fps = Gdx.graphics.getFramesPerSecond();
-
-
             if (selected == 0) {
                 if (newgame.isSelected()) {
 
@@ -151,6 +151,15 @@ public class StartScreen extends ApplicationAdapter {
                     game.create();
                 }
             }
+
+            //Render debug data
+            if(AppData.ENVIROMENT == Enviroment.DEBUG){
+                int fps = Gdx.graphics.getFramesPerSecond();
+                Text.drawText("Version " + AppData.VERSION, 0,650);
+                Text.drawText("FPS " + fps, 0,600);
+                Text.drawText("Gamepads " + Controllers.getControllers().size , 0,550);
+            }
+
         } else {
             game.render();
         }

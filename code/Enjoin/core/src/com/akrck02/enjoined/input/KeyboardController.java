@@ -1,5 +1,6 @@
 package com.akrck02.enjoined.input;
 
+import com.akrck02.enjoined.Enjoin;
 import com.akrck02.enjoined.core.Player;
 import com.akrck02.enjoined.core.data.AppData;
 import com.akrck02.enjoined.core.data.Enviroment;
@@ -18,7 +19,7 @@ public class KeyboardController implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
 
-        if(keycode == Input.Keys.X)
+        if(keycode == Input.Keys.ENTER)
             this.inputs.setAction(true);
 
         if(keycode == Input.Keys.SPACE)
@@ -43,6 +44,9 @@ public class KeyboardController implements InputProcessor {
                 AppData.ENVIROMENT = Enviroment.PRODUCTION;
         }
 
+        if(keycode == Input.Keys.S){
+            Enjoin.swapPlayer = true;
+        }
 
         return false;
     }

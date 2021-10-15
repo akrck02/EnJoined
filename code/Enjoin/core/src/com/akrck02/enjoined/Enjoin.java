@@ -14,11 +14,7 @@ import com.akrck02.enjoined.input.GamepadController;
 import com.akrck02.enjoined.input.KeyboardController;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Enjoin extends ApplicationAdapter {
@@ -34,6 +30,7 @@ public class Enjoin extends ApplicationAdapter {
 	private UserInterface ui;
 
 	public static boolean swapPlayer = false;
+	public static boolean recharge = false;
 
 	@Override
 	public void create () {
@@ -46,7 +43,6 @@ public class Enjoin extends ApplicationAdapter {
 
 		ui = new UserInterface(this.player);
 		level = loadLevel();
-		level.setPlayers(this.player,this.player2);
 
 		keyboard = new KeyboardController(this.player.getInputs());
 		gamepad = new GamepadController(this.player.getInputs());
@@ -59,12 +55,20 @@ public class Enjoin extends ApplicationAdapter {
 	 * Load a level into the game
 	 */
 	public Level loadLevel() {
-   		return LevelRegistry.LEVELS.get(Zones.TUTORIAL).get(0);
+   		return new Level(player, player2, LevelRegistry.LEVELS.get(Zones.TUTORIAL).get(0));
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(255, 255, 255, 1);
+
+		if(recharge){
+			player.getController().resetInputs();
+			player2.getController().resetInputs();
+
+			recharge();
+			recharge = false;
+		}
 
 		if(swapPlayer){
 			player.getController().resetInputs();
@@ -90,13 +94,28 @@ public class Enjoin extends ApplicationAdapter {
 			Text.drawText("Speed " + this.player.getController().getSpeed() , 0,500);
 			Text.drawText("x " + String.format("%,.2f", this.player.getCoordinates().x) , 0,450);
 			Text.drawText("y " + String.format("%,.2f", this.player.getCoordinates().y) , 0,400);
+
+			Text.drawText("dx " + String.format("%,.2f", this.player.getController().getDeltaX()) , 400,600);
+			Text.drawText("dy " + String.format("%,.2f", this.player.getController().getDeltaY()) , 400,550);
 		}
 	}
 
-	public void swapPlayers(){
+	/**
+	 * Swap player controls
+	 */
+	private void swapPlayers(){
 		Player aux = this.player;
 		this.player = this.player2;
 		this.player2 = aux;
+	}
+
+	/**
+	 * Recharges the level
+	 */
+	private void recharge(){
+		player = new Player(this.savestate,100,500, 64,64,true);
+		player2 = new Player(this.savestate,0,200, 64,64,false);
+		this.level = loadLevel();
 	}
 
 	@Override
