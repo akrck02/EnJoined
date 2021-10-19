@@ -1,5 +1,8 @@
 package com.akrck02.enjoined.core;
 
+import com.akrck02.enjoined.Enjoin;
+import com.akrck02.enjoined.core.data.AppData;
+import com.akrck02.enjoined.core.data.Enviroment;
 import com.akrck02.enjoined.core.savestates.Savestate;
 import com.akrck02.enjoined.graphics.Direction;
 import com.akrck02.enjoined.graphics.Sprite;
@@ -7,6 +10,7 @@ import com.akrck02.enjoined.graphics.Textures;
 import com.akrck02.enjoined.input.InputMap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import jdk.vm.ci.meta.Constant;
 
 import java.util.HashMap;
 
@@ -16,21 +20,23 @@ public class Player extends GameObject {
     private Sprite sprite;
     private PlayerController controller;
     private PhysicsStateSet physicsStateSet;
+    private Enjoin game;
 
     //stats
     private int lifes;
     private Savestate savestate;
 
-    public Player(Savestate savestate,double x, double y, double width, double height,boolean playerOne) {
+    public Player(Enjoin game,double x, double y, double width, double height,boolean playerOne) {
+        this.game = game;
         this.coordinates = new Vector2D(x, y);
         this.width = width;
         this.lifes = 3;
         this.height = height;
         this.body = new HitBox(this, width, height);
-        this.controller = new PlayerController(this, new InputMap());
+        this.controller = new PlayerController(game, this, new InputMap());
         this.physicsStateSet = new PhysicsStateSet();
-        this.savestate = savestate;
-        this.savestate.setCookies(323948232);
+        this.savestate = game.getSavestate();
+        this.savestate.setCookies(0);
 
 
         HashMap<Direction, Texture> sprites = new HashMap<>();
@@ -59,6 +65,9 @@ public class Player extends GameObject {
         batch.draw(this.sprite.getCurrent(), (float) this.coordinates.x, (float) this.coordinates.y);
         batch.end();
         body.render();
+
+        if(AppData.ENVIROMENT == Enviroment.DEBUG)
+            controller.render();
     }
 
     @Override

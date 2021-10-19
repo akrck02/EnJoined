@@ -48,6 +48,10 @@ public class KeyboardController implements InputProcessor {
             Enjoin.swapPlayer = true;
         }
 
+        if(keycode == Input.Keys.R){
+            Enjoin.recharge = true;
+        }
+
         return false;
     }
 

@@ -67,10 +67,10 @@ public class GamepadController implements ControllerListener {
     public boolean buttonUp(Controller controller, int buttonCode) {
         ControllerMapping mapping = controller.getMapping();
 
-        if(buttonCode == mapping.buttonA)
+        if(buttonCode == mapping.buttonX)
             this.inputs.setAction(false);
 
-        if(buttonCode == mapping.buttonX || buttonCode == mapping.buttonR1)
+        if(buttonCode == mapping.buttonA || buttonCode == mapping.buttonR1)
             this.inputs.setJump(false);
 
         if(buttonCode == mapping.buttonDpadUp)

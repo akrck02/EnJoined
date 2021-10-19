@@ -38,8 +38,8 @@ public class Enjoin extends ApplicationAdapter {
 		Gdx.graphics.setResizable(false);
 
 		savestate = SaveIo.getSavestate();
-		player = new Player(this.savestate,100,500, 64,64,true);
-		player2 = new Player(this.savestate,0,200, 64,64,false);
+		player = new Player(this,100,500, 64,64,true);
+		player2 = new Player(this,0,200, 64,64,false);
 
 		ui = new UserInterface(this.player);
 		level = loadLevel();
@@ -91,12 +91,9 @@ public class Enjoin extends ApplicationAdapter {
 			int fps = Gdx.graphics.getFramesPerSecond();
 			Text.drawText("FPS " + fps, 0,600);
 			Text.drawText("Gamepads " + Controllers.getControllers().size , 0,550);
-			Text.drawText("Speed " + this.player.getController().getSpeed() , 0,500);
+			Text.drawText("Speed " +  String.format("%,.2f", this.player.getController().getSpeed()) , 0,500);
 			Text.drawText("x " + String.format("%,.2f", this.player.getCoordinates().x) , 0,450);
 			Text.drawText("y " + String.format("%,.2f", this.player.getCoordinates().y) , 0,400);
-
-			Text.drawText("dx " + String.format("%,.2f", this.player.getController().getDeltaX()) , 400,600);
-			Text.drawText("dy " + String.format("%,.2f", this.player.getController().getDeltaY()) , 400,550);
 		}
 	}
 
@@ -113,8 +110,8 @@ public class Enjoin extends ApplicationAdapter {
 	 * Recharges the level
 	 */
 	private void recharge(){
-		player = new Player(this.savestate,100,500, 64,64,true);
-		player2 = new Player(this.savestate,0,200, 64,64,false);
+		player = new Player(this,100,500, 64,64,true);
+		player2 = new Player(this,0,200, 64,64,false);
 		this.level = loadLevel();
 	}
 
@@ -122,5 +119,12 @@ public class Enjoin extends ApplicationAdapter {
 	public void dispose () {
 		level.dispose();
 		ui.dispose();
+	}
+
+	public Savestate getSavestate() {
+		return savestate;
+	}
+	public Level getLevel() {
+		return level;
 	}
 }

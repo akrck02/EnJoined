@@ -121,8 +121,9 @@ public class HitBox implements Renderizable, Updateable {
         return minirec.overlaps(other.rectangle);
     }
 
-
-
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
 
     @Override
     public String toString() {

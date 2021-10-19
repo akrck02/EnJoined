@@ -14,7 +14,10 @@ public class TileRegistry {
         final Tile cookie = new Tile(Textures.COOKIE, new TileStateSet(),0,0,64,64);
         final Tile heart = new Tile(Textures.HEART, new TileStateSet(),0,0,64,64);
 
-        final Tile cityBlock = new Tile(Textures.CITY_BLOCK, new TileStateSet(),0,0,64,64);
+
+        final TileStateSet cityBlockStates = new TileStateSet();
+        cityBlockStates.setCollide(true);
+        final Tile cityBlock = new Tile(Textures.CITY_BLOCK, cityBlockStates,0,0,64,64);
 
         GLOBAL_TILES.put("0",cookie);
         GLOBAL_TILES.put("1",heart);

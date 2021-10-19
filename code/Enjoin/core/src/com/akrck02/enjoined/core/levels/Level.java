@@ -22,7 +22,6 @@ public class Level implements Updateable, Renderizable {
     private Player player;
     private Player player2;
 
-    private List<GameObject> objects;
     private Wallpaper wallpaper;
 
     private List<Tile> tiles;
@@ -36,7 +35,6 @@ public class Level implements Updateable, Renderizable {
 
         tiles = new LinkedList<>();
         items = new LinkedList<>();
-        objects = new LinkedList<>();
 
         parser = new DiskLevelParser(this);
         wallpaper = new Wallpaper();
@@ -46,7 +44,6 @@ public class Level implements Updateable, Renderizable {
     public Level(Level other) {
         tiles = other.tiles;
         items = other.items;
-        objects = other.objects;
         parser = new DiskLevelParser(this);
 
         wallpaper = other.wallpaper;
@@ -80,11 +77,8 @@ public class Level implements Updateable, Renderizable {
         for (Tile tile : tiles)
             tile.render();
 
-        for (Tile tile : items)
-            tile.render();
-
-        for (GameObject object : objects)
-            object.render();
+        for (Tile item : items)
+            item.render();
 
         player.render();
         player2.render();
@@ -99,14 +93,8 @@ public class Level implements Updateable, Renderizable {
             checkCollisions(player2, tile);
         }
 
-
-        for (GameObject object : objects) {
-            object.update();
-        }
-
-
-        for (Tile tile : items) {
-            tile.update();
+        for (Tile item : items) {
+            item.update();
         }
 
         player.update();
@@ -125,25 +113,15 @@ public class Level implements Updateable, Renderizable {
             if (collideUp) {
                 player.getPhysicStates().setCollideUp(true);
 
-                double dy = (object.getCoordinates().y - player.getCoordinates().y);
-                player.getController().setDeltaY(-dy);
             }
             if (collideDown) {
-                double dy = (player.getCoordinates().y - object.getCoordinates().y) + 1;
-                player.getController().setDeltaY(dy);
                 player.getPhysicStates().setCollideDown(true);
             }
             if (collideLeft) {
                 player.getPhysicStates().setCollideLeft(true);
-
-                double dx = (player.getCoordinates().x - object.getCoordinates().x );
-                player.getController().setDeltaX(dx);
             }
             if (collideRight) {
                 player.getPhysicStates().setCollideRight(true);
-
-                double dx = (object.getCoordinates().x - player.getCoordinates().x);
-                player.getController().setDeltaX(-dx);
             }
         }
 
@@ -156,12 +134,8 @@ public class Level implements Updateable, Renderizable {
         for (Tile tile : tiles)
             tile.dispose();
 
-        for (Tile tile : items)
-            tile.dispose();
-
-        for (GameObject object : objects)
-            object.dispose();
-
+        for (Tile item : items)
+            item.dispose();
 
         wallpaper.dispose();
 
@@ -207,4 +181,5 @@ public class Level implements Updateable, Renderizable {
     public Player getPlayer2() {
         return player2;
     }
+
 }

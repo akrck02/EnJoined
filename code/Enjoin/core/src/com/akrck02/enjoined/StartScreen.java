@@ -46,8 +46,8 @@ public class StartScreen extends ApplicationAdapter {
         objects = new LinkedList<>();
         batch = new SpriteBatch();
         inputs = new InputMap();
-        Gdx.graphics.setResizable(false);
 
+        Gdx.graphics.setResizable(false);
         selected = 0;
 
         keyboard = new KeyboardController(this.inputs);
@@ -161,6 +161,9 @@ public class StartScreen extends ApplicationAdapter {
             }
 
         } else {
+            if(   Sounds.MAIN_THEME.isPlaying())
+                Sounds.MAIN_THEME.stop();
+
             game.render();
         }
 

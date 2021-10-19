@@ -2,98 +2,115 @@ package com.akrck02.enjoined.core;
 
 public class PhysicsStateSet {
 
-    private boolean ascending;
-    private boolean descending;
-
-    private boolean accelerating;
-    private boolean decelerating;
+    private boolean jumping;
+    private boolean falling;
 
     private boolean collideUp;
     private boolean collideDown;
     private boolean collideLeft;
     private boolean collideRight;
 
+    private boolean futureCollideUp;
+    private boolean futureCollideDown;
+    private boolean futureCollideLeft;
+    private boolean futureCollideRight;
+
     public PhysicsStateSet() {
         reset();
     }
 
     public void reset(){
-        this.descending = false;
-        this.ascending = false;
-        this.accelerating = false;
-        this.decelerating = false;
+        this.falling = false;
+        this.jumping = false;
 
         this.collideUp = false;
         this.collideDown = false;
         this.collideLeft = false;
         this.collideRight = false;
+
+        this.futureCollideUp = false;
+        this.futureCollideDown = false;
+        this.futureCollideLeft = false;
+        this.futureCollideRight = false;
     }
 
-    public boolean isDescending() {
-        return descending;
+    public boolean isFalling() {
+        return falling;
     }
 
-    public void setDescending(boolean descending) {
-        this.descending = descending;
+    public void setFalling(boolean falling) {
+        this.falling = falling;
     }
 
-    public boolean isAscending() {
-        return ascending;
+    public boolean isJumping() {
+        return jumping;
     }
 
-    public void setAscending(boolean ascending) {
-        this.ascending = ascending;
-    }
-
-    public boolean isAccelerating() {
-        return accelerating;
-    }
-
-    public boolean isDecelerating() {
-        return decelerating;
-    }
-
-    public void setAccelerating(boolean accelerating) {
-        this.accelerating = accelerating;
-    }
-
-    public void setDecelerating(boolean decelerating) {
-        this.decelerating = decelerating;
+    public void setJumping(boolean jumping) {
+        this.jumping = jumping;
     }
 
     public boolean isCollideUp() {
         return collideUp;
     }
 
-    public PhysicsStateSet setCollideUp(boolean collideUp) {
+    public void setCollideUp(boolean collideUp) {
         this.collideUp = collideUp;
-        return this;
     }
 
     public boolean isCollideDown() {
         return collideDown;
     }
 
-    public PhysicsStateSet setCollideDown(boolean collideDown) {
+    public void setCollideDown(boolean collideDown) {
         this.collideDown = collideDown;
-        return this;
     }
 
     public boolean isCollideLeft() {
         return collideLeft;
     }
 
-    public PhysicsStateSet setCollideLeft(boolean collideLeft) {
+    public void setCollideLeft(boolean collideLeft) {
         this.collideLeft = collideLeft;
-        return this;
     }
 
     public boolean isCollideRight() {
         return collideRight;
     }
 
-    public PhysicsStateSet setCollideRight(boolean collideRight) {
+    public void setCollideRight(boolean collideRight) {
         this.collideRight = collideRight;
-        return this;
+    }
+
+    public boolean isFutureCollideUp() {
+        return futureCollideUp;
+    }
+
+    public void setFutureCollideUp(boolean futureCollideUp) {
+        this.futureCollideUp = futureCollideUp;
+    }
+
+    public boolean isFutureCollideDown() {
+        return futureCollideDown;
+    }
+
+    public void setFutureCollideDown(boolean futureCollideDown) {
+        this.futureCollideDown = futureCollideDown;
+    }
+
+    public boolean isFutureCollideLeft() {
+        return futureCollideLeft;
+    }
+
+    public void setFutureCollideLeft(boolean futureCollideLeft) {
+        this.futureCollideLeft = futureCollideLeft;
+    }
+
+    public boolean isFutureCollideRight() {
+        return futureCollideRight;
+    }
+
+    public void setFutureCollideRight(boolean futureCollideRight) {
+        this.futureCollideRight = futureCollideRight;
     }
 }

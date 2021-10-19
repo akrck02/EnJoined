@@ -49,6 +49,10 @@ public class Tile extends GameObject {
         this.coordinates = vector;
     }
 
+    public TileStateSet getStates() {
+        return states;
+    }
+
     @Override
     public String toString() {
         return "Tile{" +
