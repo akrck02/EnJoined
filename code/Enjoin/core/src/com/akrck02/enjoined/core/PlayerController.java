@@ -18,7 +18,7 @@ public class PlayerController implements Updateable, Renderizable {
     public final double MAX_SPEED = 1;
     public final double ACCELERATION = 101;
     public final double DISTANCE = 10;
-    public final double MAX_JUMP_DISTANCE = 50;
+    public final double MAX_JUMP_DISTANCE = 90;
 
     private final Enjoin game;
     private final Player player;
@@ -80,18 +80,22 @@ public class PlayerController implements Updateable, Renderizable {
         if (!player.getPhysicStates().isFutureCollideLeft() && inputs.isLeft())
             moveLeft();
 
-        if (inputs.isJump()) {
-            if (!player.getPhysicStates().isJumping() && !player.getPhysicStates().isFalling())
-                player.getPhysicStates().setJumping(true);
-        }
+        if (inputs.isJump() && (!player.getPhysicStates().isJumping() && !player.getPhysicStates().isFalling()))
+            player.getPhysicStates().setJumping(true);
 
-        if (!player.getPhysicStates().isFutureCollideUp() && player.getPhysicStates().isJumping() && !maxJump)
+
+        if (!player.getPhysicStates().isFutureCollideUp() && player.getPhysicStates().isJumping() && !maxJump) {
+            System.out.println("Everybody f***ing jump");
             jump();
-        else if (!player.getPhysicStates().isFutureCollideDown())
+        } else if (!player.getPhysicStates().isFutureCollideDown()) {
+            System.out.println("Falling in love with you");
             fall();
-        else {
+        } else {
+            System.out.println("Somebody onces told me the world is gonna roll me");
             player.getPhysicStates().setJumping(false);
             player.getPhysicStates().setFalling(false);
+            maxJump = false;
+            originY = null;
         }
 
 
@@ -167,7 +171,7 @@ public class PlayerController implements Updateable, Renderizable {
     private void jump() {
         player.getPhysicStates().setFalling(false);
         player.getPhysicStates().setJumping(true);
-        
+
         if (originY == null) {
             originY = player.coordinates.y;
         }
@@ -205,9 +209,15 @@ public class PlayerController implements Updateable, Renderizable {
         double newY = player.coordinates.y - speed;
 
         if (newY < 0) {
+            System.out.println("surface level 0");
             newY = 1;
             this.speed = 0;
+
             player.getPhysicStates().setFalling(false);
+            player.getPhysicStates().setJumping(false);
+
+            maxJump = false;
+            originY = null;
         }
 
         player.coordinates.y = newY;
@@ -318,9 +328,6 @@ public class PlayerController implements Updateable, Renderizable {
             shapes.rect(futureRightHitbox.x, futureRightHitbox.y, futureRightHitbox.width, futureRightHitbox.height);
             shapes.end();
         }
-
-        Text.drawText("Jumping: " + player.getPhysicStates().isJumping(), 800, 600);
-        Text.drawText("Falling: " + player.getPhysicStates().isFalling(), 800, 550);
     }
 
     @Override
