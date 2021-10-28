@@ -17,7 +17,7 @@ public class PlayerController implements Updateable, Renderizable {
     public final double IDLE_SPEED = 0;
     public final double MAX_SPEED = 1;
     public final double ACCELERATION = 101;
-    public final double DISTANCE = 10;
+    public final double DISTANCE = 7;
     public final double MAX_JUMP_DISTANCE = 90;
 
     private final Enjoin game;
@@ -85,13 +85,10 @@ public class PlayerController implements Updateable, Renderizable {
 
 
         if (!player.getPhysicStates().isFutureCollideUp() && player.getPhysicStates().isJumping() && !maxJump) {
-            System.out.println("Everybody f***ing jump");
             jump();
         } else if (!player.getPhysicStates().isFutureCollideDown()) {
-            System.out.println("Falling in love with you");
             fall();
         } else {
-            System.out.println("Somebody onces told me the world is gonna roll me");
             player.getPhysicStates().setJumping(false);
             player.getPhysicStates().setFalling(false);
             maxJump = false;

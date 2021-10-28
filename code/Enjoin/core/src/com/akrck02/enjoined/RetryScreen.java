@@ -9,7 +9,6 @@ public class RetryScreen extends GameObject {
 
     }
 
-
     @Override
     public void render() {
 

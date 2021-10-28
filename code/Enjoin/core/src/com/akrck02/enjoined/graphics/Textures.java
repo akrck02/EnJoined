@@ -40,6 +40,10 @@ public class Textures {
 
     //background decorations
     public final static Texture CLOUDS = new Texture(DECORATIONS_DIR + "clouds.png");
+    public final static Texture CLOUD = new Texture(DECORATIONS_DIR + "cloud.png");
+    public final static Texture SMALL_BUILDING = new Texture(DECORATIONS_DIR + "buildingSmall.png");
+    public final static Texture LARGE_BUILDING = new Texture(DECORATIONS_DIR + "buildingLarge.png");
+    public final static Texture BIG_BUILDING = new Texture(DECORATIONS_DIR + "buildingBig.png");
 
     //items
     public final static Texture COOKIE = new Texture(ITEMS_DIR + "Cookie.png");

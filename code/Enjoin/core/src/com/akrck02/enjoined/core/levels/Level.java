@@ -6,7 +6,8 @@ import com.akrck02.enjoined.core.Tile;
 import com.akrck02.enjoined.core.Vector2D;
 import com.akrck02.enjoined.core.interfaces.Renderizable;
 import com.akrck02.enjoined.core.interfaces.Updateable;
-import com.akrck02.enjoined.graphics.Wallpaper;
+import com.akrck02.enjoined.graphics.wallpaper.CityWallpaper;
+import com.akrck02.enjoined.graphics.wallpaper.Wallpaper;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -37,7 +38,7 @@ public class Level implements Updateable, Renderizable {
         items = new LinkedList<>();
 
         parser = new DiskLevelParser(this);
-        wallpaper = new Wallpaper();
+        wallpaper = new CityWallpaper();
         loadLevel(url);
     }
 
